@@ -9,11 +9,13 @@ func _process(_delta: float) -> void:
 
 	if is_first_person or GameManager.shiftlocked:
 		global_position = get_viewport_rect().size / 2
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 			global_position = get_global_mouse_position()
 
 	if GameManager.shiftlocked:
+		set_inverted(false)
 		set_icon(ICON.SHIFTLOCK)
 	elif get_viewport().gui_get_hovered_control():
 		set_icon(ICON.CLICK)
@@ -30,5 +32,9 @@ func set_icon(icon:ICON):
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and not event.is_echo():
-		if event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.button_index == MOUSE_BUTTON_RIGHT and not GameManager.shiftlocked:
 			set_inverted(event.is_pressed())
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
