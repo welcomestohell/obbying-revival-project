@@ -1,6 +1,6 @@
 # Welcome To Hell Exception
 
-Team Fireworks Gameshas received explicit written permission from Gamability to
+Team Fireworks Games has received explicit written permission from Gamability to
 use this project commercially, including in the commercial title Welcome To
 Hell.
 
